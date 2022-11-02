@@ -1,0 +1,53 @@
+<section class="book">
+  <div class="container mx-auto px-4">
+    <div class="wrapper flex flex-col items-center gap-4">
+      <h1 class="text-center text-9xl text-purple-400 font-bold p-[2rem]">
+        Book Store
+      </h1>
+      <button
+        [routerLink]="['addbook']"
+        class="edit text-[1.25rem] font-bold text-slate-700 bg-slate-400 rounded-md py-[0.7rem] px-[1.5rem] tracking-[0.15rem] cursor-pointer"
+      >
+        New Book
+      </button>
+      <div class="all_books flex justify-between pt-3 flex-wrap gap-4">
+        <div
+          *ngFor="let book of res"
+          class="book_ui_card flex flex-col justify-center mb-4 bg-slate-100 shadow-slate-600 shadow-lg w-[15rem] text-center rounded-lg border-[1px] border-slate-800 border-opacity-25"
+        >
+          <img
+            *ngIf="book.image"
+            src="http://localhost:3000/{{ book.image }}"
+            alt=""
+            class="w-[250px] h-[230px] p-[0.2rem] rounded-lg bg-cover overflow-hidden"
+          />
+
+          <h3 class="text-[1.5rem] font-semibold text-slate-600">
+            {{ book?.name }}
+          </h3>
+          <h3 class="text-[1.5rem] font-semibold text-slate-600">
+            {{ book?.author }}
+          </h3>
+          <h3 class="text-[1.5rem] font-semibold text-slate-600">
+            {{ book?.price }}Rs
+          </h3>
+
+          <div class="btns flex p-[0.5rem] gap-2">
+            <button
+              (click)="deleteBook(book)"
+              class="delete text-[1.25rem] font-medium text-white bg-red-700 rounded-lg p-[0.25rem] w-full tracking-[0.15rem] cursor-pointer"
+            >
+              Delete
+            </button>
+            <button
+              (click)="sendDataToUpdateForm(book)"
+              class="edit text-[1.25rem] font-medium text-white bg-green-700 rounded-lg p-[0.25rem] w-full tracking-[0.15rem] cursor-pointer"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
